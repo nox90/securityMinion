@@ -3,7 +3,7 @@
 A serverless bot to provide secrets management for collaboration platforms (currently supports slack)
 
 - Uses AWS secrets manager to securely manage the secrets and a private S3 bucket with pre-signed URLs.
-- Allows storage and access to secrets on a slack channel context basis. All the people in the same channel will be able to list and view the secrets.
+- Allows storage and access to secrets on a slack channel context basis. All the users in the same channel will be able to list and view the secrets.
 - Sends audit logs to AWS CloudWatch.
 - Warns if the channel isn't private.
 
