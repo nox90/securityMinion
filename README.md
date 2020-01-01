@@ -1,11 +1,11 @@
 # Security Minion
 
-A serverless bot to provide secrets managment for collaboration platforms (currently supports slack)
+A serverless bot to provide secrets management for collaboration platforms (currently supports slack)
 
-- Uses AWS secrets manager to manage secrets 
-- Allows storage and access to secrets on a slack channel context basis
-- Sends audit logs to AWS CloudWatch
-- Warns if the channel isn't private
+- Uses AWS secrets manager to securely manage the secrets and a private S3 bucket with pre-signed URLs.
+- Allows storage and access to secrets on a slack channel context basis. All the people in the same channel will be able to list and view the secrets.
+- Sends audit logs to AWS CloudWatch.
+- Warns if the channel isn't private.
 
 
 ## Getting Started
@@ -80,10 +80,10 @@ Login to Slack with admin permissions. Go to [slack API](https://api.slack.com/a
 
 and save it.
 
-Now, from "App Credentials" in the "Basic Information" section, copy the value of **Verification Token** and create an environment variable named **"VerificationToken"** in the lamba function settings with that value.  
+Now, from "App Credentials" in the "Basic Information" section, copy the value of **Verification Token** and create an environment variable named **"VerificationToken"** in the Lamba function settings with that value.  
 Also add the **BucketName** environment variable with the proper S3 bucket to store secret files.  
 In **"Bot Users"** add a bot: enter a name and set **"Always Show My Bot as Online"** to **ON**.  
-Go to **"OAuth & Permissions"** and click **"Install App in WorkSpace"**, click **"Allow"**, copy the value of **"Bot User OAuth Access Token"** and set an environment variable named **"BotUserOAuthAccessToken"** in the lamba function settings with that value.  
+Go to **"OAuth & Permissions"** and click **"Install App in WorkSpace"**, click **"Allow"**, copy the value of **"Bot User OAuth Access Token"** and set an environment variable named **"BotUserOAuthAccessToken"** in the Lamba function settings with that value.  
 Go to the slack app, create a channel or select one with the people that will use the app and **add** the **app**.
 
 
@@ -116,7 +116,7 @@ Go to the slack app, create a channel or select one with the people that will us
 - /sminion secret-name returns the stored secret
 - /sminion secret-name=secret-value saves or updates a secret-value as secret-name
 - /sminion secret-name.txt=+ advanced mode to save a secret. It allows you to upload a file.
-- /sminion <tags:{tag1=value,tag2=value}> secret=secret-value (not yet implmented)
+- /sminion <tags:{tag1=value,tag2=value}> secret=secret-value (not yet implemented)
 
 
 # **Todo**
