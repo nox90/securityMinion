@@ -54,7 +54,9 @@ The API gateway method can be "**GET** and **POST**" or just **ANY**. Write down
 
 Finally add permissions to the IAM Role: **SecretsManagerReadWrite**, **CloudWatchLogsFullAccess** and read/write in the bucket
 
-Set the S3 bucket **CORS** configuration:  
+Set the S3 bucket **CORS** configuration:
+
+```xml
 <?xml version="1.0" encoding="UTF-8"?>  
 <CORSConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/">  
 <CORSRule>  
@@ -65,7 +67,7 @@ Set the S3 bucket **CORS** configuration:
     <AllowedHeader>*</AllowedHeader>  
 </CORSRule>  
 </CORSConfiguration>
-
+```
 
 ---
 
