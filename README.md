@@ -96,7 +96,8 @@ Go to the slack app, create a channel or select one with the people that will us
 ## Notes
 1. The logs can be accessed at CloudWatch, Log Groups, /aws/lambda/__FUNCTION_NAME__
 2. At AWS secrets manager, the secrets are named: __TEAMID.CHANNELID.SECRETNAME__
-
+3. Allways use private channels
+4. In order to check if the channel is private, you must invite the app to it.
 
 ## Built With
 
