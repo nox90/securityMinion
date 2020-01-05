@@ -17,7 +17,7 @@ region = "eu-west-1"
 ##################################################
 
 reservedWords = ("help", "?", "??")
-
+S3_content_type = 'application/octet-stream'
 
 help_message = '''
 ▀▀ *Security Minion {version}. Secrets Manager for Slack.* ▀▀

@@ -4,6 +4,7 @@
 
 from botocore.exceptions import ClientError
 import boto3
+import settings
 import os
 import logFunctions
 
@@ -40,7 +41,7 @@ def create_presigned_url_put(object_name, expiration=3600): # Generate a presign
     url=s3_con.generate_presigned_url('put_object',
         Params={'Bucket': bucket_name,
                 'Key': object_name,
-                'ContentType': 'image/png'
+                'ContentType': settings.S3_content_type
         },
         ExpiresIn=expiration
     )

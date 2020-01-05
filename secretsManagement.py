@@ -71,7 +71,7 @@ def HTML_uploadForm(url):
                 type: 'PUT',
                 url:prisigned_url,
                 //contentType: 'binary/octet-stream',
-                contentType: 'image/png',
+                contentType: '"""+settings.S3_content_type+"""',
                 processData: false,
                 data: theFormFile,
                 xhr: function() {
