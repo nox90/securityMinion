@@ -25,6 +25,7 @@ See deployment for notes on how to deploy the Security Minion bot.
 **create a Lambda function**  
 - Open the [AWS Lambda console](https://console.aws.amazon.com/lambda/home).
 - Choose Create a function.
+- Under **Choose the protocol**, choose REST.
 - For Function name, enter sminion
 - Choose Create function.
 
