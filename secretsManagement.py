@@ -60,10 +60,12 @@ def HTML_uploadForm(url):
     $(document).ready(function(){
 
         prisigned_url='"""+url+"""'
-        $(function() { $('#theForm').on('submit', sendFile); });
+        $(function() { $('#theButton').on('click', sendFile); });
 
         function sendFile(e) {
             e.preventDefault();
+            document.getElementById('msg').innerText='uploading...';
+            document.getElementById('theForm').style.display='none';
             var theFormFile = $('#theFile').get()[0].files[0];
             $.ajax({
                 type: 'PUT',
@@ -103,7 +105,7 @@ def HTML_uploadForm(url):
     <h2 id=msg>Select the file to upload</h2>
     <form id="theForm" method="POST" enctype="multipart/form-data" >
         <input id="theFile" name="file" type="file"/> 
-        <button type="submit" onclick="document.getElementById('msg').innerText='uploading...';document.getElementById('theForm').style.display='none';">Send</button>
+        <button id="theButton" type="button" >Send</button>
     </form>
     </center>
     </body>

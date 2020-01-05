@@ -49,11 +49,12 @@ def main(event, context):
                 bodyString = ''
             if ('isBase64Encoded' in event) and event['isBase64Encoded']:
                 slack_event = base64.decodestring(bytes(bodyString, 'utf-8')).decode('utf-8')
+                slack_event = urllib.parse.parse_qs(slack_event)
             else:
                 slack_event = urllib.parse.parse_qs(bodyString)
         except Exception as e:
             logFunctions.log('Invalid data in body '+str(e))
-
+    
 
     if (type(get_params) is dict) and (get_params.get('presigned', '') != '1'): # the user wants to upload a file
         return_headers = { 'Content-Type': 'text/html' }
@@ -149,8 +150,6 @@ def main(event, context):
         'headers': return_headers,
         'isBase64Encoded': isBase64Encoded
     }
-
-
 
 if __name__ == '__main__':
     print('running local')
