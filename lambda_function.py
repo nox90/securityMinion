@@ -14,6 +14,7 @@ import base64
 import logFunctions
 import secretsManagement
 import settings
+import slackFunctions
 
 
 
@@ -109,7 +110,7 @@ def main(event, context):
                 output = secretsManagement.get_secret_list(from_team, from_channel)
 
             elif text.lower() == "info":
-                output = 'id: '+ slack_event['user_id'] + ' team domain: '+ slack_event['team_domain']+ ' ' + slackFunctions.get_channel_info(channel)
+                output = 'id: '+ from_user + ' team domain: '+ from_domain+ ' channel: '+from_channel+' ' + slackFunctions.get_channel_info(from_channel, True)
 
             # create a new secret
             elif '=' in text:

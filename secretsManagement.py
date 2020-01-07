@@ -233,7 +233,7 @@ def get_secret_list(team, channel):
     try:
         if settings.check_private_channel:
             info = slackFunctions.get_channel_info(channel)
-        else
+        else:
             info = ''
         answer = client.list_secrets( MaxResults=64 )
         while 'SecretList' in answer:
@@ -262,7 +262,7 @@ def get_secret_list_extended(team, channel):
     try:
         if settings.check_private_channel:
             info = slackFunctions.get_channel_info(channel)
-        else
+        else:
             info = ''
         answer = client.list_secrets( MaxResults=64 )
         while 'SecretList' in answer:
