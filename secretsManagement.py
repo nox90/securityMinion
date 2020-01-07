@@ -3,7 +3,6 @@
 #
 
 from botocore.exceptions import ClientError
-from requests_toolbelt.multipart import decoder
 import cgi
 import boto3
 import settings
@@ -146,7 +145,10 @@ def set_secret(user, team, channel, secret_name, secret_value):
             else:
                 if aws_secretsmanager_set_secret(team+'.'+channel+'.'+secret_name, encode_text_secret(secret_value), Tags1):
                     logFunctions.log('User '+user+' created the secret: "'+secret_name+'" at channel: '+channel)
-                    return 'I will remember it as '+slackFunctions.escape(secret_name)+' (only for this channel)'+slackFunctions.get_channel_info(channel)
+                    fret = 'I will remember it as '+slackFunctions.escape(secret_name)+' (only for this channel)'
+                    if settings.check_private_channel:
+                        fret += slackFunctions.get_channel_info(channel)
+                    return fret
                 else:
                     return 'Something went wrong when storing your secret'
         except Exception as e:
@@ -175,7 +177,10 @@ def update_secret(user, team, channel, secret_name, secret_value, old_secret_val
                     )
 
                     logFunctions.log('User '+user+' updated the secret: "'+secret_name+'" at channel: '+channel)
-                    return 'I will remember the new "'+slackFunctions.escape(secret_name)+'" secret'+slackFunctions.get_channel_info(channel)
+                    fret = 'I will remember the new "'+slackFunctions.escape(secret_name)+'" secret'
+                    if settings.check_private_channel:
+                        fret += slackFunctions.get_channel_info(channel)
+                    return fret
                 else:
                     return 'Something went wrong when updating your secret'
         except Exception as e:
@@ -226,7 +231,10 @@ def get_secret_list(team, channel):
     secrets = []
     prefix = team+'.'+channel+'.'
     try:
-        info = slackFunctions.get_channel_info(channel)
+        if settings.check_private_channel:
+            info = slackFunctions.get_channel_info(channel)
+        else
+            info = ''
         answer = client.list_secrets( MaxResults=64 )
         while 'SecretList' in answer:
             for sec in answer['SecretList']:
@@ -252,7 +260,10 @@ def get_secret_list_extended(team, channel):
     secrets = []
     prefix = team+'.'+channel+'.'
     try:
-        info = slackFunctions.get_channel_info(channel)
+        if settings.check_private_channel:
+            info = slackFunctions.get_channel_info(channel)
+        else
+            info = ''
         answer = client.list_secrets( MaxResults=64 )
         while 'SecretList' in answer:
             for sec in answer['SecretList']:

@@ -108,9 +108,9 @@ def main(event, context):
             elif text == "?":
                 output = secretsManagement.get_secret_list(from_team, from_channel)
 
-            elif text.lower() == "who am i?":
-                output = 'id: '+ slack_event['user_id'] + ' team domain: '+ slack_event['team_domain']
-                
+            elif text.lower() == "info":
+                output = 'id: '+ slack_event['user_id'] + ' team domain: '+ slack_event['team_domain']+ ' ' + slackFunctions.get_channel_info(channel)
+
             # create a new secret
             elif '=' in text:
                 newSecretName, newSecretValue = '', ''

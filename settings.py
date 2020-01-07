@@ -7,8 +7,9 @@
 ##################################################
 
 botName = 'sminion'
-botVersion = 'v1.05'
+botVersion = 'v1.06'
 region = "eu-west-1"
+check_private_channel = False
 
 ##################################################
 #                                                #
@@ -16,7 +17,7 @@ region = "eu-west-1"
 #                                                #
 ##################################################
 
-reservedWords = ("help", "?", "??")
+reservedWords = ("help", "info", "?", "??")
 S3_content_type = 'application/octet-stream'
 
 help_message = '''
