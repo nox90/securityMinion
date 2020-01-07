@@ -23,6 +23,6 @@ def get_channel_info(channel1):
                 return '\nWARNING: this is a *public channel*'
         else:
             return '\nWARNING: I can not check if this channel is private'
-    except:
-        return '\nWARNING. I can not check if this channel is private!'
+    except Exception as e:
+        return '\nWARNING. I can not check if this channel is private! '+str(e)
 
