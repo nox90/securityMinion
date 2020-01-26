@@ -119,8 +119,8 @@ Go to the slack app, create a channel or select one with the people that will us
 - /sminion ?? Returns a detailed list of secrets stored for this channel
 - /sminion secret-name Returns the stored secret
 - /sminion secret-name=secret-value Saves or updates a secret-value as secret-name
-- /sminion secret-name.txt=+ Saves or updates a file as secret-name.txt
-- /sminion secret-name= Forgets a secret
+- /sminion file secret-name.txt OR /sminion secret-name.txt=+ Saves or updates a file as secret-name.txt
+- /sminion secret-name= OR /sminion delete secret-name Forgets a secret
 - /sminion <tags:{tag1=value,tag2=value}> secret=secret-value (not yet implemented)
 
  Secret names and values are case sensitive.

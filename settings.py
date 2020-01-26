@@ -17,7 +17,7 @@ check_private_channel = False
 #                                                #
 ##################################################
 
-reservedWords = ("help", "info", "?", "??")
+reservedWords = ("help", "info", "delete", "file", "?", "??")
 S3_content_type = 'application/octet-stream'
 
 help_message = '''
@@ -35,8 +35,10 @@ Usage:
 > Returns the stored secret
 */{name} _secret-name_=_secret-value_*
 > Saves or updates a secret-value as secret-name
+*/{name} file _secret-name.txt_*
 */{name} _secret-name.txt_=+*
 > Saves or updates a file as secret-name.txt
+*/{name} delete _secret-name_*
 */{name} _secret-name_=*
 > Forgets a secret
 

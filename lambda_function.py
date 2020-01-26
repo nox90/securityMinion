@@ -112,6 +112,16 @@ def main(event, context):
             elif text.lower() == "info":
                 output = 'id: '+ from_user + ' team domain: '+ from_domain+ ' channel: '+from_channel+' ' + slackFunctions.get_channel_info(from_channel, True)
 
+            elif text.lower().startswith("delete "):
+                output = secretsManagement.delete_secret(from_user, from_team, from_channel, text[7:].lower().strip())
+            elif text.lower() == "delete":
+                output = "missing name to delete"
+
+            elif text.lower().startswith("file "):
+                output = secretsManagement.set_secret(from_user, from_team, from_channel, text[5:].lower().strip(), '+' )
+            elif text.lower() == "file":
+                output = "missing file name"
+
             # create a new secret
             elif '=' in text:
                 newSecretName, newSecretValue = '', ''

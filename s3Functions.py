@@ -46,3 +46,13 @@ def create_presigned_url_put(object_name, expiration=3600): # Generate a presign
         ExpiresIn=expiration
     )
     return url
+
+#
+# Delete a file from S3
+#
+
+def delete(object_name):
+    bucket_name = os.environ.get('BucketName')
+    client = boto3.client('s3')
+    o = client.delete_object(Bucket=bucket_name, Key=object_name)
+    return str(o)

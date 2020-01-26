@@ -212,6 +212,11 @@ def get_secret(user, team, channel, secret_name = ''):
 def delete_secret(user, team, channel, secret_name):
     try:
         SecretId1=team+'.'+channel+'.'+secret_name
+
+        oSecret = aws_secretsmanager_get_secret( SecretId1 )
+        if (len(oSecret) > 0) and (oSecret.get('secretType', '') == 's3file'): # if it's a file, delete the file
+            s3Functions.delete( oSecret.get('secret', '') )
+
         client.tag_resource( SecretId=SecretId1, Tags=[
                 {'Key': 'DeletedBy', 'Value': user},
                 {'Key': 'DeletedDate', 'Value': datetime.datetime.now().strftime("%m-%d-%Y %H:%M:%S")}
